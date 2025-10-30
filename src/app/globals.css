@@ -1,26 +1,22 @@
 @import "tailwindcss";
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: cupcake --default;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+ol {
+  @apply list-decimal pl-4 space-y-4;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+input[type="radio"] {
+  @apply radio;
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+ol li {
+  @apply space-y-2  text-lg;
+}
+
+ol li label {
+  padding-left: 1rem;
+  /* color: white; */
+  font-size: 14px;
 }
