@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { quizTopics } from "@/content";
-export default function QuizTopicSelector({ close, setTopic }) {
+// import { data } from "@/content";
+export default function QuizTopicSelector({ close, setTopic, data, type }) {
   const [selectedTopic, setSelectedTopic] = useState("");
   const [selectedSubtopic, setSelectedSubtopic] = useState("");
   const [inputTopic, setInputTopic] = useState("");
 
   // หาหัวข้อย่อยของ topic ที่เลือก
-  const currentTopic = quizTopics.find((t) => t.topic === selectedTopic);
+  const currentTopic = data.find((t) => t.topic === selectedTopic);
 
   const handleTopicChange = (e) => {
     const topic = e.target.value;
@@ -37,7 +37,7 @@ export default function QuizTopicSelector({ close, setTopic }) {
           className="select rounded-2xl text-lg select-warning bg-warning"
         >
           <option value="">-- กรุณาเลือกหัวข้อ --</option>
-          {quizTopics.map((t) => (
+          {data.map((t) => (
             <option key={t.topic} value={t.topic}>
               {t.topic}
             </option>
@@ -75,7 +75,7 @@ export default function QuizTopicSelector({ close, setTopic }) {
         type="submit"
         className="btn btn-success rounded-2xl text-lg mt-6 w-full"
       >
-        บันทึก
+        {type === "special-exam" ? "สร้างข้อสอบ" : "บันทึก"}
       </button>
     </form>
   );

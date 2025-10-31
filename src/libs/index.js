@@ -12,7 +12,11 @@ export const validation = (value) => {
   }
 
   if (value.noq <= "0") {
-    return { status: true, message: "จำนวนหัวข้อต้องมากกว่า 0" };
+    return { status: true, message: "จำนวนข้อต้องมากกว่า 0" };
+  }
+
+  if (value.noq > "10") {
+    return { status: true, message: "จำกัดจำนวนไม่เกิน 10 ข้อ" };
   }
 
   if (value.difficalty == "") {

@@ -1,10 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { GlobeAltIcon } from "@heroicons/react/24/solid";
 
 export default function QuizForm({ quizData }) {
+  console.log(quizData);
   const router = useRouter();
-  const { html, answers } = quizData;
+  const { html, answers, sources } = quizData;
   const [questions, setQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
@@ -65,8 +67,9 @@ export default function QuizForm({ quizData }) {
   return (
     <div className="py-6">
       <div>
-        <h1 className="text-xl text-center font-medium">
-          หัวข้อ {quizData.topic}
+        <h1 className="text-center font-medium">
+          <span className="text-lg font-medium">หัวข้อ</span>
+          <br /> <span className="text-md">{quizData.topic}</span>
         </h1>
       </div>
       <form onSubmit={handleSubmit} className="w-full py-6">
@@ -177,6 +180,26 @@ export default function QuizForm({ quizData }) {
           </div>
         )}
       </form>
+
+      {sources && (
+        <div className="fab">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-lg btn-circle btn-info"
+          >
+            <GlobeAltIcon className="size-6 text-white" />
+          </div>
+          {sources?.map((s, i) => (
+            <button
+              key={i}
+              className="btn btn-sm w-[300px] overflow-hidden text-wrap bg-info text-white font-light py-6"
+            >
+              {s}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

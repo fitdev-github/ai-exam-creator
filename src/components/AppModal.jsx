@@ -4,6 +4,8 @@ import { Button, Dialog, DialogPanel, DialogTitle } from "@headlessui/react";
 import { useState, useEffect } from "react";
 import QuizTopicSelector from "./QuizTopicSelector";
 
+import { normalExamTopics } from "@/content";
+
 export default function AppModal({ submitTopic }) {
   let [isOpen, setIsOpen] = useState(false);
   let [topic, setTopic] = useState("");
@@ -46,7 +48,12 @@ export default function AppModal({ submitTopic }) {
               transition
               className="w-full max-w-md rounded-xl p-6 backdrop-blur-2xl duration-300 ease-out data-closed:transform-[scale(95%)] data-closed:opacity-0"
             >
-              <QuizTopicSelector close={close} setTopic={setTopic} />
+              <QuizTopicSelector
+                close={close}
+                setTopic={setTopic}
+                data={normalExamTopics}
+                type="normal-exam"
+              />
             </DialogPanel>
           </div>
         </div>
